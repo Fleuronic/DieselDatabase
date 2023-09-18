@@ -6,11 +6,11 @@ import protocol DieselService.LocationSpec
 import protocol Catenoid.Database
 
 extension Database: LocationSpec {
-    public func storeLocations(from list: [LocationBaseFields]) async -> Self.Result<[Location.ID]> {
-        await delete(Location.Identified.self).asyncFlatMap { _ in
-            await list.asyncFlatMap { fields in
-                await insert(Location.Identified(fields: fields))
-            }
-        }
-    }
+	public func storeLocations(from list: [LocationBaseFields]) async -> Self.Result<[Location.ID]> {
+		await delete(Location.Identified.self).asyncFlatMap { _ in
+			await list.asyncFlatMap { fields in
+				await insert(Location.Identified(fields: fields))
+			}
+		}
+	}
 }

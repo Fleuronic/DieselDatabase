@@ -28,17 +28,17 @@ extension Database: EventSpec {
 		}
 	}
 
-    public func storeEvents(from list: [EventBaseFields], for year: Int) async -> Self.Result<[Event.ID]> {
-        await deleteEvents(for: year).asyncFlatMap { _ in
-            await list.asyncFlatMap { fields in
-                let location = Location.Identified(
+	public func storeEvents(from list: [EventBaseFields], for year: Int) async -> Self.Result<[Event.ID]> {
+		await deleteEvents(for: year).asyncFlatMap { _ in
+			await list.asyncFlatMap { fields in
+				let location = Location.Identified(
 					fields: await fetch(LocationBaseFields.self, with: fields.locationID).value!
-                )
+				)
 
-                return await insert(
-                    Event.Identified(
+				return await insert(
+					Event.Identified(
 						fields: fields,
-                        location: location,
+						location: location,
 						venue: fields.venueID.asyncMap { id in
 							let venueFields = await fetch(VenueBaseFields.self, with: id).value!
 
@@ -50,13 +50,13 @@ extension Database: EventSpec {
 								)
 							)
 						}
-                    )
-                )
-            }
-        }
-    }
-    
-    public func deleteEvents(for year: Int) async -> Self.Result<[Event.ID]> {
-        await delete(Event.Identified.self)
-    }
+					)
+				)
+			}
+		}
+	}
+
+	public func deleteEvents(for year: Int) async -> Self.Result<[Event.ID]> {
+		await delete(Event.Identified.self)
+	}
 }
