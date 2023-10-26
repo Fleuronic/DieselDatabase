@@ -1,12 +1,12 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-import Schemata
 import PersistDB
 
 import struct Diesel.Event
 import struct Diesel.Venue
 import struct Diesel.Address
 import struct Diesel.Location
+import protocol Schemata.AnyModel
 import protocol Catenoid.Database
 
 public struct Database {
