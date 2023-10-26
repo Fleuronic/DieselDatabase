@@ -12,7 +12,7 @@ extension Database: VenueSpec {
 		await delete(Venue.Identified.self).asyncFlatMap { _ in
 			await list.asyncFlatMap { fields in
 				let addressFields = await fetch(AddressBaseFields.self, with: fields.addressID).value!
-
+				
 				return await insert(
 					Venue.Identified(
 						fields: fields,
