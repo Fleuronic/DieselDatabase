@@ -3,6 +3,7 @@
 import PersistDB
 
 import struct Diesel.Event
+import struct Diesel.Show
 import struct Diesel.Venue
 import struct Diesel.Address
 import struct Diesel.Location
@@ -22,6 +23,7 @@ extension Database: Catenoid.Database {
 	public static var types: [AnyModel.Type] {
 		[
 			Event.Identified.self,
+			Show.Identified.self,
 			Venue.Identified.self,
 			Address.Identified.self,
 			Location.Identified.self
