@@ -16,11 +16,7 @@ import protocol Catenoid.Database
 extension Database: EventSpec {
 	public func listEvents(for year: Int) -> AsyncStream<Self.Result<[EventListFields]>> {
 		.init {
-			await fetch(EventListFields.self).map {
-				$0.sorted {
-					($0.date, $0.city) < ($1.date, $1.city)
-				}
-			}
+			await fetch(EventListFields.self, where: Event.takesPlace(in: year))
 		}
 	}
 
