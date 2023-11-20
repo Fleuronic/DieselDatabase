@@ -4,8 +4,6 @@ import struct Diesel.Event
 import struct Diesel.Show
 import struct Diesel.Location
 import struct DieselService.EventBaseFields
-import struct DieselService.EventListFields
-import struct DieselService.EventDetailsFields
 import struct DieselService.VenueBaseFields
 import struct DieselService.AddressBaseFields
 import struct DieselService.LocationBaseFields
@@ -29,28 +27,32 @@ extension Database: EventSpec {
 	public func storeEvents(from list: [EventBaseFields], for year: Int) async -> Self.Result<[Event.ID]> {
 		await deleteEvents(for: year).asyncFlatMap { _ in
 			await list.asyncFlatMap { fields in
-				let location = Location.Identified(
-					fields: await fetch(LocationBaseFields.self, with: fields.locationID).value!
-				)
-				
-				let show = await fields.showID.asyncMap { id in
+				let showID = fields.show?.id
+				let show = await showID.asyncMap { showID in
 					Show.Identified(
-						fields: await fetch(ShowBaseFields.self, with: id).value!
+						fields: await fetch(ShowBaseFields.self, with: showID).value!
 					)
 				}
-				
+
+				let venueID = fields.venue?.id
+				let locationID = fields.location.id
+				let location = Location.Identified(
+					fields: await fetch(LocationBaseFields.self, with: locationID).value!
+				)
+
 				return await insert(
 					Event.Identified(
 						fields: fields,
 						show: show,
 						location: location,
-						venue: fields.venueID.asyncMap { id in
-							let venueFields = await fetch(VenueBaseFields.self, with: id).value!
-							
+						venue: venueID.asyncMap { venueID in
+							let venueFields = await fetch(VenueBaseFields.self, with: venueID).value!
+							let addressID = venueFields.address.id
+
 							return .init(
 								fields: venueFields,
 								address: .init(
-									fields: await fetch(AddressBaseFields.self, with: venueFields.addressID).value!,
+									fields: await fetch(AddressBaseFields.self, with: addressID).value!,
 									location: location
 								)
 							)

@@ -10,11 +10,13 @@ extension Database: AddressSpec {
 	public func storeAddresses(from list: [AddressBaseFields]) async -> Self.Result<[Address.ID]> {
 		await delete(Address.Identified.self).asyncFlatMap { _ in
 			await list.asyncFlatMap { fields in
-				await insert(
+				let locationID = fields.location.id
+
+				return await insert(
 					Address.Identified(
 						fields: fields,
 						location: .init(
-							fields: await fetch(LocationBaseFields.self, with: fields.locationID).value!
+							fields: await fetch(LocationBaseFields.self, with: locationID).value!
 						)
 					)
 				)
