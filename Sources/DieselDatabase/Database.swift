@@ -7,13 +7,21 @@ import struct Diesel.Show
 import struct Diesel.Venue
 import struct Diesel.Address
 import struct Diesel.Location
+import struct Catena.IDFields
 import protocol Schemata.AnyModel
 import protocol Catenoid.Database
+import protocol DieselService.EventFields
 
-public struct Database {
+public struct Database<
+	EventListFields: EventFields,
+	EventDetailsFields: EventFields
+>{
 	public private(set) var store: Store<ReadWrite>
 
-	public init() async {
+	public init(
+		eventListFields: EventListFields.Type = IDFields<Event.Identified>.self,
+		eventDetailsFields: EventDetailsFields.Type = IDFields<Event.Identified>.self
+	) async {
 		store = try! await Self.createStore()
 	}
 }
