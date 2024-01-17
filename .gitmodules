@@ -1,9 +1,0 @@
-[submodule "Geometric"]
-	path = Submodules/Geometric
-	url = https://github.com/Fleuronic/Geometric
-[submodule "Telemetric"]
-	path = Submodules/Telemetric
-	url = https://github.com/Fleuronic/Telemetric
-[submodule "Parametric"]
-	path = Submodules/Parametric
-	url = https://github.com/Fleuronic/Parametric
