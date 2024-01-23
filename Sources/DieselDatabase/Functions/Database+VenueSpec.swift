@@ -14,7 +14,7 @@ extension Database: VenueSpec {
 				let addressID = fields.address.id
 				let addressFields = await fetch(AddressBaseFields.self, with: addressID).value!
 				let locationID = addressFields.location.id
-
+				
 				return await insert(
 					Venue.Identified(
 						fields: fields,

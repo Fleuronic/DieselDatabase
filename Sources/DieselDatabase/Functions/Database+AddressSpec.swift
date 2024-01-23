@@ -11,7 +11,7 @@ extension Database: AddressSpec {
 		await delete(Address.Identified.self).asyncFlatMap { _ in
 			await list.asyncFlatMap { fields in
 				let locationID = fields.location.id
-
+				
 				return await insert(
 					Address.Identified(
 						fields: fields,

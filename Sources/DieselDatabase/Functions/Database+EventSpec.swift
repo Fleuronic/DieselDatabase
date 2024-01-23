@@ -13,15 +13,11 @@ import protocol Catenoid.Database
 
 extension Database: EventSpec {
 	public func listEvents(for year: Int) -> AsyncStream<Self.Result<[EventListFields]>> {
-		.init {
-			await fetch(EventListFields.self, where: Event.takesPlace(in: year))
-		}
+		.init { await fetch(EventListFields.self, where: Event.takesPlace(in: year)) }
 	}
 
 	public func fetchEventDetails(with id: Event.ID) -> AsyncStream<Self.Result<EventDetailsFields?>> {
-		.init {
-			await fetch(EventDetailsFields.self, with: id)
-		}
+		.init { await fetch(EventDetailsFields.self, with: id) }
 	}
 
 	public func storeEvents(from list: [EventBaseFields], for year: Int) async -> Self.Result<[Event.ID]> {
@@ -33,13 +29,13 @@ extension Database: EventSpec {
 						fields: await fetch(ShowBaseFields.self, with: showID).value!
 					)
 				}
-
+				
 				let venueID = fields.venue?.id
 				let locationID = fields.location.id
 				let location = Location.Identified(
 					fields: await fetch(LocationBaseFields.self, with: locationID).value!
 				)
-
+				
 				return await insert(
 					Event.Identified(
 						fields: fields,
@@ -48,7 +44,7 @@ extension Database: EventSpec {
 						venue: venueID.asyncMap { venueID in
 							let venueFields = await fetch(VenueBaseFields.self, with: venueID).value!
 							let addressID = venueFields.address.id
-
+							
 							return .init(
 								fields: venueFields,
 								address: .init(
