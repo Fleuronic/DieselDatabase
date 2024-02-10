@@ -28,13 +28,15 @@ public struct Database<
 
 // MARK: -
 extension Database: Catenoid.Database {
-	public static let types: [AnyModel.Type] = [
-		Event.Identified.self,
-		Show.Identified.self,
-		Venue.Identified.self,
-		Address.Identified.self,
-		Location.Identified.self
-	]
+	public static var types: [AnyModel.Type] {
+		[
+			Event.Identified.self,
+			Show.Identified.self,
+			Venue.Identified.self,
+			Address.Identified.self,
+			Location.Identified.self
+		]
+	}
 
 	public mutating func clear() async throws {
 		try Store.destroy()
