@@ -6,7 +6,7 @@
       "location" : "https://github.com/Fleuronic/Catena",
       "state" : {
         "branch" : "main",
-        "revision" : "4ca5c0ad5552f60dde02ae6fbebad2d8662d259b"
+        "revision" : "c5788fe599415bf79bb34429b894b97bc8b26bc7"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/Fleuronic/Catenary",
       "state" : {
         "branch" : "main",
-        "revision" : "8dc67ce7511bfede0ef88585f717fa2ede6cca81"
+        "revision" : "d8494c945de9b8541c32ccdac5bcf12d65e20482"
       }
     },
     {
@@ -24,7 +24,7 @@
       "location" : "https://github.com/Fleuronic/Catenoid",
       "state" : {
         "branch" : "main",
-        "revision" : "acf392cae2cb0cdb517d4912dbed7a7549f2e7d8"
+        "revision" : "31968132870b9aad38243ec7d44d686e887a9fed"
       }
     },
     {
@@ -42,7 +42,7 @@
       "location" : "https://github.com/Fleuronic/Diesel",
       "state" : {
         "branch" : "main",
-        "revision" : "6bd6c4f7726a5bd7afaf2340a14be2e34d1d4d7d"
+        "revision" : "bae211f865a939246d338b56a322d37912cb19d4"
       }
     },
     {
@@ -51,7 +51,7 @@
       "location" : "https://github.com/Fleuronic/DieselService",
       "state" : {
         "branch" : "main",
-        "revision" : "9b5deaebe8cc92f4d97ee1813b3db58f7a2f7fa7"
+        "revision" : "e92d1bc057ce306606b28bb6dd77ec671ece7006"
       }
     },
     {
@@ -78,7 +78,7 @@
       "location" : "https://github.com/LeonardoCardoso/InitMacro.git",
       "state" : {
         "branch" : "main",
-        "revision" : "6b1488c4b540c70e1952dd2ece985dbe266e8964"
+        "revision" : "41beaa5cc3f8884385df6d0acf49f79821ab2496"
       }
     },
     {
@@ -87,7 +87,7 @@
       "location" : "https://github.com/Fleuronic/PersistDB",
       "state" : {
         "branch" : "master",
-        "revision" : "edc45a9c1a217c6640af2b8b1f2a2bc538997641"
+        "revision" : "fd3eec2673993bee5682d5fade7b2a2654dff4cb"
       }
     },
     {
